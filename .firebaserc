@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "devarafath-1211e"
+  },
+  "targets": {
+    "devarafath-1211e": {
+      "hosting": {
+        "portfolio": [
+          "devarafath"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
