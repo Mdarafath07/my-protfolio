@@ -1,16 +1,14 @@
 export const educationList = [
   {
-    degree: 'BSc in Computer Science & Engineering (CSE)',
+    degree: 'BSc in Computer Science & Engineering',
     institution: 'Northern University Bangladesh',
-    period: 'Running',
-    gpa: 'Ongoing',
-    iconColor: 'linear-gradient(135deg, #f59e0b, #ef4444)'
+    period: 'Ongoing',
+    detail: 'Relevant coursework: data structures, algorithms, DBMS, OOP'
   },
   {
-    degree: 'Diploma in Computer Science and Technology (CST)',
+    degree: 'Diploma in Computer Science & Technology',
     institution: 'Compact Polytechnic Institute, Feni',
-    period: 'Session: 2021–2022',
-    gpa: 'GPA: 3.28 / 4.00',
-    iconColor: 'linear-gradient(135deg, #6366f1, #06b6d4)'
+    period: '2021 — 2024',
+    gpa: 'GPA 3.28 / 4.00'
   }
 ];

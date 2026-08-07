@@ -1,97 +1,40 @@
-import { techStackCategories, technicalSkills, softSkills } from '../data/skills.js';
+import { skillGroups, focusStack } from '../data/skills.js';
+
+const icons = {
+  mobile: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>',
+  database: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>',
+  code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>',
+  layers: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg>'
+};
 
 export function renderSkills() {
-  const skillsPlaceholder = document.querySelector('#skills-placeholder');
-  if (!skillsPlaceholder) return;
+  const host = document.querySelector('#skills-placeholder');
+  if (!host) return;
 
-  // Generate Redesigned Tech Stack HTML
-  const categoriesHtml = techStackCategories.map(cat => {
-    const skillsListHtml = cat.skills.map(skill => `
-      <div class="tech-stack-item" title="${skill.name}">
-        <div class="tech-stack-icon-wrap">${skill.icon}</div>
-        <span class="tech-stack-name">${skill.name}</span>
-      </div>
-    `).join('');
-
-    return `
-      <div class="skills-category-card reveal" style="--accent-color: ${cat.color}">
-        <div class="category-card-glow"></div>
-        <div class="category-header">
-          <div class="category-icon-main" style="background: ${cat.color}15; color: ${cat.color}">
-            ${cat.icon}
-          </div>
-          <div>
-            <h3 class="category-title">${cat.title}</h3>
-            <p class="category-subtitle">${cat.subtitle}</p>
-          </div>
-        </div>
-        <div class="tech-stack-grid">
-          ${skillsListHtml}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  // Generate Technical Skills List HTML (no percentage — plain skill tags)
-  const techSkillsHtml = technicalSkills.map(skill => `
-    <div class="tech-pill reveal">
-      <span class="tech-pill-dot" style="background: linear-gradient(135deg, #6366f1, #06b6d4)"></span>
-      <span class="tech-pill-name">${skill}</span>
-    </div>
-  `).join('');
-
-  // Generate Soft Skills Grid HTML (visually attractive cards)
-  const softSkillsHtml = softSkills.map((skill, index) => `
-    <div class="soft-skill-card reveal" style="--delay-idx: ${index}">
-      <div class="soft-skill-glow"></div>
-      <div class="soft-skill-icon">${skill.icon}</div>
-      <h4 class="soft-skill-name">${skill.name}</h4>
-      <p class="soft-skill-desc">${skill.desc}</p>
-    </div>
-  `).join('');
-
-  skillsPlaceholder.innerHTML = `
+  host.innerHTML = `
     <section id="skills" class="section skills">
-      <div class="section-bg-accent"></div>
       <div class="container">
-        
-        <!-- Part 1: Redesigned Tech Stack -->
-        <div class="section-header reveal">
-          <div class="section-tag">Expertise</div>
-          <h2 class="section-title">My <span class="gradient-text">Tech Stack</span></h2>
-          <p class="section-subtitle">Categorized technologies and approaches I use to build robust products</p>
+        <div class="section-head reveal">
+          <span class="eyebrow">Stack</span>
+          <h2>Tools I build with</h2>
+          <p class="lead">A focused, production-tested toolkit for building cross-platform apps that stay fast and easy to maintain.</p>
         </div>
 
-        <div class="tech-categories-grid">
-          ${categoriesHtml}
+        <div class="focus-row reveal">
+          <span class="label">Core focus</span>
+          ${focusStack.map(t => `<li>${t}</li>`).join('')}
         </div>
 
-        <!-- Part 2: Technical Skills Grid -->
-        <div class="tech-skills-section">
-          <div class="section-header reveal" style="margin-top: 3rem; margin-bottom: 1.5rem;">
-            <div class="section-tag">Capabilities</div>
-            <h2 class="section-title">Technical <span class="gradient-text">Skills</span></h2>
-            <p class="section-subtitle">In-depth development capabilities and framework features</p>
-          </div>
-          
-          <div class="tech-pills-row">
-            ${techSkillsHtml}
-          </div>
+        <div class="skills-grid" style="margin-top:1.5rem">
+          ${skillGroups.map((g, i) => `
+            <div class="skill-group reveal" style="transition-delay:${i * 60}ms">
+              <h3>
+                <span class="gi" aria-hidden="true">${icons[g.icon]}</span>
+                ${g.title}
+              </h3>
+              <ul>${g.skills.map(s => `<li>${s}</li>`).join('')}</ul>
+            </div>`).join('')}
         </div>
-
-        <!-- Part 3: Soft Skills Grid -->
-        <div class="soft-skills-section">
-          <div class="section-header reveal" style="margin-top: 3rem; margin-bottom: 1.5rem;">
-            <div class="section-tag">Core Qualities</div>
-            <h2 class="section-title"><span class="gradient-text">Soft Skills</span></h2>
-            <p class="section-subtitle">How I lead, collaborate, and manage execution workflows</p>
-          </div>
-
-          <div class="soft-skills-grid">
-            ${softSkillsHtml}
-          </div>
-        </div>
-
       </div>
     </section>
   `;

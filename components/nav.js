@@ -1,123 +1,77 @@
 import { contactInfo } from '../data/contact.js';
 
-export function renderNav() {
-  const navContainer = document.querySelector('#nav-placeholder');
-  if (!navContainer) return;
+const links = [
+  { id: 'home', label: 'Work' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' }
+];
 
-  navContainer.innerHTML = `
-    <nav class="nav" id="nav">
-      <div class="nav-container">
-        <a href="#home" class="nav-logo" id="navLogo">
-          <span class="logo-bracket">{</span>
-          <span class="logo-prefix">Dev-</span>
-          <span class="logo-letter">A</span>
-          <span class="logo-suffix">rafath</span>
-          <span class="logo-bracket">}</span>
+export function renderNav() {
+  const host = document.querySelector('#nav-placeholder');
+  if (!host) return;
+
+  host.innerHTML = `
+    <nav class="site-nav" id="siteNav" aria-label="Primary">
+      <div class="container nav-inner">
+        <a class="brand" href="#home" aria-label="Back to top">
+          <span class="brace">{</span>Arafath<span class="brace">}</span>
         </a>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
-          <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-          <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
-          <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-          <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
-          <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
-          <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+        <ul class="nav-links">
+          ${links.map(l => `<li><a href="#${l.id}" data-section="${l.id}">${l.label}</a></li>`).join('')}
         </ul>
         <div class="nav-actions">
-          <a href="#contact" class="btn-hire" id="navHireBtn">Hire Me</a>
-          <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+          <a href="${contactInfo.github}" target="_blank" rel="noopener" class="btn btn-ghost btn-sm hide-sm" aria-label="GitHub profile">
+            GitHub
+          </a>
+          <a href="assets/resume/Md.Arafath%27s%20Resume.png" target="_blank" class="btn btn-primary btn-sm">Resume</a>
+          <button class="nav-burger" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Open menu">
             <span></span><span></span><span></span>
           </button>
         </div>
       </div>
     </nav>
 
-    <!-- ===== MOBILE MENU ===== -->
-    <div class="mobile-menu" id="mobileMenu">
-      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/>
-          <line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-      <ul class="mobile-nav-links">
-        <li><a href="#home" class="mobile-nav-link">Home</a></li>
-        <li><a href="#about" class="mobile-nav-link">About</a></li>
-        <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
-        <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
-        <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
-        <li><a href="#education" class="mobile-nav-link">Education</a></li>
-        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-      </ul>
+    <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+      ${links.map((l, i) => `
+        <a href="#${l.id}" class="mob-link" data-section="${l.id}">
+          ${l.label}
+          <small>0${i + 1}</small>
+        </a>`).join('')}
+      <div class="mob-actions">
+        <a href="${contactInfo.github}" target="_blank" rel="noopener" class="btn btn-ghost" style="flex:1">GitHub</a>
+        <a href="#contact" class="btn btn-primary" style="flex:1">Hire Me</a>
+      </div>
     </div>
   `;
 
-  initNavLogic();
+  initNav();
 }
 
-function initNavLogic() {
-  const nav = document.querySelector('#nav');
+function initNav() {
+  const nav = document.querySelector('#siteNav');
   const toggle = document.querySelector('#navToggle');
-  const menu = document.querySelector('#mobileMenu');
-  const close = document.querySelector('#mobileMenuClose');
-  const links = document.querySelectorAll('.mobile-nav-link');
-  const logo = document.querySelector('#navLogo');
+  const panel = document.querySelector('#mobilePanel');
 
-  if (!nav) return;
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Scroll behavior
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    nav.classList.toggle('scrolled', y > 20);
-    updateActiveLink(y);
-  }, { passive: true });
+  const setOpen = (open) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    panel.classList.toggle('open', open);
+    panel.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('no-scroll', open);
+  };
 
-  // Toggle mobile menu
-  toggle.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    menu.classList.toggle('open');
-    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  toggle.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
+  panel.querySelectorAll('.mob-link').forEach(a =>
+    a.addEventListener('click', () => setOpen(false))
+  );
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setOpen(false);
   });
-
-  close.addEventListener('click', closeMobileMenu);
-
-  links.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-  });
-
-  function closeMobileMenu() {
-    toggle.classList.remove('active');
-    menu.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  // Active link updater
-  const sections = document.querySelectorAll('section[id]');
-  function updateActiveLink(scrollY) {
-    let current = '';
-    sections.forEach(section => {
-      const top = section.offsetTop - 120;
-      if (scrollY >= top) current = section.id;
-    });
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.classList.toggle('active', link.dataset.section === current);
-    });
-  }
-
-  // Logo load animation (slide out to Dev-Arafath, then collapse)
-  if (logo) {
-    setTimeout(() => {
-      logo.classList.add('logo-animate-in');
-      setTimeout(() => {
-        logo.classList.remove('logo-animate-in');
-      }, 2500);
-    }, 400);
-
-    // Pulse-glow on click
-    logo.addEventListener('click', () => {
-      logo.style.animation = 'none';
-      void logo.offsetWidth; // force reflow
-      logo.style.animation = 'pulse-glow 0.5s ease';
-    });
-  }
 }

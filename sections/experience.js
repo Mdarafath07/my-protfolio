@@ -1,53 +1,56 @@
 import { experiences } from '../data/experience.js';
+import { educationList } from '../data/education.js';
 
 export function renderExperience() {
-  const experiencePlaceholder = document.querySelector('#experience-placeholder');
-  if (!experiencePlaceholder) return;
+  const host = document.querySelector('#experience-placeholder');
+  if (!host) return;
 
-  const timelineItemsHtml = experiences.map(exp => {
-    const bulletsHtml = exp.bullets.map(b => `<li>${b}</li>`).join('');
-    const tagsHtml = exp.tags.map(t => `<span>${t}</span>`).join('');
-
-    return `
-      <div class="timeline-item reveal" data-side="${exp.side}">
-        <div class="timeline-dot">
-          <div class="timeline-dot-inner"></div>
-        </div>
-        <div class="timeline-card">
-          <div class="timeline-card-header">
-            <div class="timeline-company-icon" style="background: ${exp.iconColor}">
-              ${exp.iconSvg}
-            </div>
-            <div>
-              <h3 class="timeline-role">${exp.role}</h3>
-              <p class="timeline-company">${exp.company}</p>
-            </div>
-            <div class="timeline-period">${exp.period}</div>
-          </div>
-          <ul class="timeline-bullets">
-            ${bulletsHtml}
-          </ul>
-          <div class="timeline-tags">
-            ${tagsHtml}
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  experiencePlaceholder.innerHTML = `
+  host.innerHTML = `
     <section id="experience" class="section experience">
-      <div class="section-bg-accent section-bg-left"></div>
       <div class="container">
-        <div class="section-header reveal">
-          <div class="section-tag">Journey</div>
-          <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
-          <p class="section-subtitle">My professional journey building mobile products, leading teams, and mentoring developers</p>
+        <div class="section-head reveal">
+          <span class="eyebrow">Career</span>
+          <h2>Experience & education</h2>
+          <p class="lead">A mix of building real products for clients, leading a developer club, and formal computer-science training.</p>
         </div>
 
-        <div class="timeline" id="timeline">
-          <div class="timeline-line"></div>
-          ${timelineItemsHtml}
+        <div class="exp-wrap t-wrap">
+          <div class="exp-list">
+            ${experiences.map((exp, i) => `
+              <div class="exp-item reveal" style="transition-delay:${i * 60}ms">
+                <div class="top">
+                  <h3>${exp.role}</h3>
+                  <span class="period">${exp.period}</span>
+                </div>
+                <div class="company">${exp.company}</div>
+                <p class="summary">${exp.summary}</p>
+                <ul>${exp.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+                <ul class="tags">${exp.tags.map(t => `<li>${t}</li>`).join('')}</ul>
+              </div>`).join('')}
+          </div>
+
+          <div id="education">
+            <div class="edu-list">
+              ${educationList.map((edu, i) => `
+                <div class="edu-item reveal" style="transition-delay:${i * 70}ms">
+                  <span class="kicker">Education</span>
+                  <h3>${edu.degree}</h3>
+                  <p class="where">${edu.institution}</p>
+                  <div class="meta">
+                    <span>${edu.period}</span>
+                    ${edu.gpa ? `<span>${edu.gpa}</span>` : ''}
+                    ${edu.detail ? `<span>${edu.detail}</span>` : ''}
+                  </div>
+                </div>`).join('')}
+              <div class="edu-item reveal">
+                <span class="kicker">Languages</span>
+                <div class="meta" style="margin-top:0.6rem">
+                  <span>Bengali · Native</span>
+                  <span>English · Professional</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

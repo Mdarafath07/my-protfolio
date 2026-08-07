@@ -1,93 +1,68 @@
 export function renderAbout() {
-  const aboutPlaceholder = document.querySelector('#about-placeholder');
-  if (!aboutPlaceholder) return;
+  const host = document.querySelector('#about-placeholder');
+  if (!host) return;
 
-  aboutPlaceholder.innerHTML = `
-    <section id="about" class="section about">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-tag">Who I Am</div>
-          <h2 class="section-title">Crafting Digital <span class="gradient-text">Experiences</span></h2>
-          <p class="section-subtitle">Passionate Flutter developer turning complex ideas into seamless mobile realities</p>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-visual reveal">
-            <div class="about-image-card">
-              <div class="about-image-glow"></div>
-              <div class="code-window">
-                <div class="code-window-header">
-                  <div class="code-dots"><span></span><span></span><span></span></div>
-                  <span class="code-file">main.dart</span>
-                </div>
-                <pre class="code-body"><code><span class="code-kw">class</span> <span class="code-cls">ArafathDev</span> <span class="code-kw">extends</span> <span class="code-cls">FlutterDeveloper</span> {
-
-  <span class="code-kw">final</span> <span class="code-cls">String</span> name <span class="code-op">=</span> <span class="code-str">"Arafath"</span>;
-  <span class="code-kw">final</span> <span class="code-cls">String</span> passion <span class="code-op">=</span> <span class="code-str">"Mobile Excellence"</span>;
-  <span class="code-kw">final</span> <span class="code-cls">List</span><span class="code-op">&lt;</span><span class="code-cls">String</span><span class="code-op">&gt;</span> skills <span class="code-op">=</span> [
-    <span class="code-str">"Flutter"</span>, <span class="code-str">"Dart"</span>, <span class="code-str">"Firebase"</span>,
-    <span class="code-str">"REST API"</span>, <span class="code-str">"Provider"</span>, <span class="code-str">"Clean Code"</span>
+  const focus = [
+    {
+      t: 'Performance & polish',
+      d: 'Animations at 60fps, small binary sizes, snappy first paint.',
+      i: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>'
+    },
+    {
+      t: 'Clean architecture',
+      d: 'Provider, Riverpod, repository patterns — code that scales and reads well.',
+      i: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg>'
+    },
+    {
+      t: 'Ship to production',
+      d: 'Firebase, FCM, APKs and web builds — I follow features from idea to release.',
+      i: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>'
+    }
   ];
 
-  <span class="code-cls">Widget</span> <span class="code-fn">buildApp</span>(<span class="code-cls">Context</span> ctx) {
-    <span class="code-kw">return</span> <span class="code-cls">PremiumApp</span>(
-      quality<span class="code-op">:</span> <span class="code-cls">Quality</span>.exceptional,
-      stateManagement<span class="code-op">:</span> <span class="code-cls">State</span>.provider,
-    );
-  }
-}</code></pre>
-                <div class="code-cursor-blink"></div>
-              </div>
-            </div>
+  host.innerHTML = `
+    <section id="about" class="section about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <span class="eyebrow">About</span>
+            <h2>I turn product ideas into apps people actually use.</h2>
+            <p>
+              I'm <strong>Arafath</strong>, a Flutter developer and software engineering student from Dhaka.
+              I've spent the last few years building production apps — from an institute management ecosystem
+              to a retail POS system — owning everything from UI and state management to Firebase backends and releases.
+            </p>
+            <p>
+              My work is guided by three things: <strong>clean, maintainable code</strong>, apps that feel fast
+              on any device, and honest communication with the people I build for. I also mentor other developers
+              — teaching has made me far better at explaining and defending technical decisions.
+            </p>
+            <p style="margin-bottom:0">
+              I'm currently open to <strong>full-time, remote and freelance Flutter roles</strong> internationally.
+            </p>
           </div>
 
-          <div class="about-content reveal">
-            <div class="about-text">
-              <p>A passionate and dedicated <strong>Flutter Developer</strong> with strong expertise in mobile application development, Firebase services, and REST API integration.</p>
-              <p>Experienced in building smart, efficient, and user-friendly applications that solve real-world problems. Passionate about creating modern digital experiences, mentoring aspiring developers, and continuously learning new technologies.</p>
+          <aside class="focus-card reveal">
+            ${focus.map(f => `
+              <div class="fc-item">
+                <span class="fc-ico" aria-hidden="true">${f.i}</span>
+                <div class="fc-body"><b>${f.t}</b><p>${f.d}</p></div>
+              </div>`).join('')}
+            <div style="margin-top:1.25rem">
+              <button class="btn btn-primary" data-scroll="#contact" style="width:100%">
+                Let's work together
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
             </div>
-
-            <div class="about-highlights">
-              <div class="highlight-card">
-                <div class="highlight-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <div>
-                  <h4>Performance First</h4>
-                  <p>Smooth animations, optimized build sizes</p>
-                </div>
-              </div>
-              <div class="highlight-card">
-                <div class="highlight-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <div>
-                  <h4>Clean Architecture</h4>
-                  <p>Scalable, testable, maintainable codebases</p>
-                </div>
-              </div>
-              <div class="highlight-card">
-                <div class="highlight-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                </div>
-                <div>
-                  <h4>Cross-Platform</h4>
-                  <p>Unified code implementation for Android & iOS</p>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="about-cta">
-              <a href="#contact" class="btn-primary">Let's Work Together</a>
-              <div class="availability-badge">
-                <div class="availability-dot"></div>
-                <span>Available Now</span>
-              </div>
-            </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
   `;
+
+  const btn = host.querySelector('[data-scroll="#contact"]');
+  btn.addEventListener('click', () => {
+    const target = document.querySelector('#contact');
+    if (target) target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  });
 }

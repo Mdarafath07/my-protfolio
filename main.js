@@ -1,118 +1,78 @@
 import { renderNav } from './components/nav.js';
 import { renderFooter } from './components/footer.js';
 import { renderHero } from './sections/hero.js';
-import { renderAbout } from './sections/about.js';
-import { renderSkills } from './sections/skills.js';
 import { renderProjects } from './sections/projects.js';
+import { renderSkills } from './sections/skills.js';
 import { renderExperience } from './sections/experience.js';
-import { renderEducation } from './sections/education.js';
+import { renderAbout } from './sections/about.js';
 import { renderContact } from './sections/contact.js';
 
-import { initHeroCanvas, initContactCanvas } from './animations/particles.js';
-import { initTyped } from './animations/typed.js';
-import { initReveal, initTimelineReveal, initCounters, initCardGlow } from './animations/reveal.js';
-import { initTilt } from './animations/tilt.js';
+buildUI();
 
-// Global state
-const state = {
-  isLoaded: false
-};
-
-// Start preloading visual sequence instantly
-document.body.classList.add('preloading');
-const preloaderFill = document.querySelector('#preloaderFill');
-const preloaderText = document.querySelector('#preloaderText');
-
-const steps = [
-  { pct: 15, msg: 'Loading assets...' },
-  { pct: 40, msg: 'Initializing canvas...' },
-  { pct: 65, msg: 'Building UI...' },
-  { pct: 85, msg: 'Preparing animations...' },
-  { pct: 100, msg: 'Welcome!' },
-];
-
-let idx = 0;
-const interval = setInterval(() => {
-  if (idx >= steps.length) {
-    clearInterval(interval);
-    setTimeout(completeInitialization, 300);
-    return;
-  }
-  const { pct, msg } = steps[idx++];
-  if (preloaderFill) preloaderFill.style.width = pct + '%';
-  if (preloaderText) preloaderText.textContent = msg;
-}, 150);
-
-// Initialize all HTML content components synchronously
 function buildUI() {
   renderNav();
   renderHero();
-  renderAbout();
-  renderSkills();
   renderProjects();
+  renderSkills();
   renderExperience();
-  renderEducation();
+  renderAbout();
   renderContact();
   renderFooter();
-}
 
-// Complete preloader hide and start interactive animations
-function completeInitialization() {
-  const preloader = document.querySelector('#preloader');
-  if (preloader) {
-    preloader.classList.add('hidden');
-  }
-  document.body.classList.remove('preloading');
-  state.isLoaded = true;
-
-  // Initialize animations after UI layout is built
-  initHeroCanvas('#heroCanvas');
-  initContactCanvas('#contactCanvas');
-  initTyped('#typedText');
   initReveal();
-  initTimelineReveal();
-  initCounters();
-  initTilt('#profileCard');
-  initCardGlow();
-  initCursor();
+  initActiveNav();
   initSmoothScroll();
-
-  console.log('%c{Arafath Portfolio — Modular System}', 'color:#818cf8;font-size:18px;font-weight:700;font-family:monospace');
-  console.log('%cRestructured with Clean Architecture principles ⚡', 'color:#22d3ee;font-size:12px;font-family:monospace');
 }
 
-// Custom cursor mechanics
-function initCursor() {
-  const dot = document.querySelector('#cursorDot');
-  const ring = document.querySelector('#cursorRing');
-  if (!dot || !ring) return;
-  if (window.matchMedia('(hover: none)').matches) return;
-
-  let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    dotX = e.clientX; 
-    dotY = e.clientY;
-  });
-
-  function animateCursor() {
-    ringX += (dotX - ringX) * 0.12;
-    ringY += (dotY - ringY) * 0.12;
-    dot.style.transform  = `translate(${dotX}px, ${dotY}px) translate(-50%, -50%)`;
-    ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-    requestAnimationFrame(animateCursor);
+// Subtle reveal-on-scroll — respects reduced motion via CSS
+function initReveal() {
+  const items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    items.forEach(el => el.classList.add('visible'));
+    return;
   }
-  animateCursor();
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  items.forEach(el => observer.observe(el));
 
-  // Hover expand delegate listener to handle dynamically rendered elements
-  document.addEventListener('mouseover', (e) => {
-    const target = e.target.closest('a, button, .skills-category-card, .project-card, .filter-btn, .contact-item, .soft-skill-card, .education-card');
-    if (target) ring.classList.add('expanded');
-    else ring.classList.remove('expanded');
-  });
+  // Safety net: anything already in the viewport must never stay hidden,
+  // even if IntersectionObserver misbehaves (older webviews, headless, etc.)
+  const revealInViewport = () => {
+    items.forEach(el => {
+      if (el.classList.contains('visible')) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) el.classList.add('visible');
+    });
+  };
+  setTimeout(revealInViewport, 800);
+  window.addEventListener('load', revealInViewport);
+  window.addEventListener('scroll', revealInViewport, { passive: true });
 }
 
-// Smooth scroll for anchor clicks
+// Active link highlighting while scrolling
+function initActiveNav() {
+  const sections = [...document.querySelectorAll('main section[id]')];
+  if (!sections.length) return;
+  const links = document.querySelectorAll('.nav-links a[data-section]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const id = entry.target.id;
+      links.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => observer.observe(s));
+}
+
+// Smooth scroll for same-page anchors
 function initSmoothScroll() {
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href^="#"]');
@@ -122,11 +82,7 @@ function initSmoothScroll() {
     const target = document.querySelector(href);
     if (!target) return;
     e.preventDefault();
-    const offset = 80;
-    const top = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const top = target.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   });
 }
-
-// Boot UI rendering
-buildUI();
