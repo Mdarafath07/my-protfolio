@@ -83,7 +83,7 @@ export function renderContact() {
               </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block" id="contactSubmit" style="margin-top:1.25rem">
+            <button type="submit" class="btn btn-primary btn-block" id="contactSubmit" style="margin-top:0.9rem">
               <span id="submitText">Send message</span>
               <span id="submitLoading" style="display:none">Sending…</span>
             </button>

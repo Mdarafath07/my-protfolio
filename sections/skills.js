@@ -25,7 +25,7 @@ export function renderSkills() {
           ${focusStack.map(t => `<li>${t}</li>`).join('')}
         </div>
 
-        <div class="skills-grid" style="margin-top:1.5rem">
+        <div class="skills-grid">
           ${skillGroups.map((g, i) => `
             <div class="skill-group reveal" style="transition-delay:${i * 60}ms">
               <h3>

@@ -29,7 +29,7 @@ export function createProjectCard(project) {
           ${project.achievements.map(a => `<li>${Icons.check}<span>${a}</span></li>`).join('')}
         </ul>
       </div>
-      <div class="project-links" style="padding:0 1.35rem 1.4rem">
+      <div class="project-links">
         <ul class="project-stack" aria-hidden="true">
           ${project.stack.slice(0, 4).map(t => `<li>${t}</li>`).join('')}
           ${project.stack.length > 4 ? `<li>+${project.stack.length - 4}</li>` : ''}

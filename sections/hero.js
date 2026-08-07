@@ -22,7 +22,7 @@ export function renderHero() {
       <div class="container hero-inner">
         <div class="hero-copy">
           <div class="hero-badge"><span class="pulse"></span> Available for work — Dhaka, Bangladesh</div>
-          <h1>Hi, I'm Arafath&nbsp;Uddin<span class="accent">.</span></h1>
+          <h1>Hi, I'm<br>Arafath<span class="accent">.</span></h1>
           <div class="hero-role">
             Flutter Developer
             <span class="sep">·</span>
