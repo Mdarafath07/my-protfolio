@@ -15,23 +15,29 @@ export function renderSkills() {
     <section id="skills" class="section skills">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Stack</span>
-          <h2>Tools I build with</h2>
+          <span class="eyebrow"><span class="idx">03</span> Stack</span>
+          <h2>Tools I <span class="it">build with</span></h2>
           <p class="lead">A focused, production-tested toolkit for building cross-platform apps that stay fast and easy to maintain.</p>
         </div>
 
         <div class="focus-row reveal">
           <span class="label">Core focus</span>
-          ${focusStack.map(t => `<li>${t}</li>`).join('')}
+          <ul style="display:contents">
+            ${focusStack.map(t => `<li>${t}</li>`).join('')}
+          </ul>
         </div>
 
         <div class="skills-grid">
           ${skillGroups.map((g, i) => `
-            <div class="skill-group reveal" style="transition-delay:${i * 60}ms">
+            <div class="skill-group card reveal" style="transition-delay:${i * 70}ms">
               <h3>
                 <span class="gi" aria-hidden="true">${icons[g.icon]}</span>
                 ${g.title}
               </h3>
+              ${g.logos ? `
+                <div class="skill-logos">
+                  ${g.logos.map(l => `<img src="assets/taste/icons/demo/${l}.svg" alt="${l}" loading="lazy" width="22" height="22">`).join('')}
+                </div>` : ''}
               <ul>${g.skills.map(s => `<li>${s}</li>`).join('')}</ul>
             </div>`).join('')}
         </div>

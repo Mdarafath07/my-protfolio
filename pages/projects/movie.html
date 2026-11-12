@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Movie Dekhba — Case Study | Arafath Uddin</title>
   <meta name="description" content="Movie Dekhba case study — a Netflix-style streaming app built with Flutter, TMDB API and Firebase. Multi-server playback, accounts and cross-device watchlists." />
-  <meta name="theme-color" content="#0b0b0f" />
+  <meta name="theme-color" content="#f6f4ee" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://mdarafath07.github.io/my-protfolio/pages/projects/movie.html" />
   <meta property="og:type" content="article" />
@@ -18,9 +18,19 @@
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../style.css" />
   <link rel="stylesheet" href="../../detail.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div id="detail-app"></div>

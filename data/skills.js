@@ -1,26 +1,28 @@
 export const skillGroups = [
   {
-    title: 'Mobile Development',
+    title: 'Flutter & Mobile Development',
     icon: 'mobile',
-    skills: ['Flutter', 'Dart', 'Provider', 'Riverpod', 'iOS', 'Android', 'Responsive UI']
+    logos: ['flutter', 'dart', 'firebase'],
+    skills: ['Flutter', 'Dart', 'Firebase Authentication', 'Cloud Firestore', 'FCM', 'REST API Integration', 'Provider', 'Hive', 'Responsive UI Design']
   },
   {
-    title: 'Backend & Data',
-    icon: 'database',
-    skills: ['REST APIs', 'Firestore', 'Realtime Database', 'Firebase Auth', 'FCM', 'Storage', 'Hive', 'Google Sheets API']
-  },
-  {
-    title: 'Tools & Workflow',
-    icon: 'code',
-    skills: ['Git & GitHub', 'Postman', 'VS Code', 'Android Studio', 'Figma', 'Firebase Crashlytics']
-  },
-  {
-    title: 'Engineering Practices',
+    title: 'Software Development & Concepts',
     icon: 'layers',
-    skills: ['Clean Architecture', 'Provider & Riverpod', 'Repository Pattern', 'State Management', 'Performance Optimization', 'Accessibility']
+    skills: ['Object-Oriented Programming (OOP)', 'State Management', 'Application Debugging', 'Performance Optimization', 'Software Testing', 'Problem Solving', 'Data Handling']
+  },
+  {
+    title: 'Development Tools & Platforms',
+    icon: 'code',
+    logos: ['android-studio', 'visual-studio-code', 'git', 'github', 'postman', 'figma'],
+    skills: ['Android Studio', 'Visual Studio Code', 'Git', 'GitHub', 'Firebase Console', 'Postman', 'Figma']
+  },
+  {
+    title: 'Systems & Networking',
+    icon: 'database',
+    skills: ['Windows Installation & Configuration', 'PC Hardware Troubleshooting', 'System Maintenance', 'Network Troubleshooting', 'Router Configuration', 'Internet Connectivity']
   }
 ];
 
 export const focusStack = [
-  'Flutter', 'Dart', 'Firebase', 'REST APIs', 'Provider', 'Riverpod', 'Clean Architecture', 'Git'
+  'Flutter', 'Dart', 'Firebase', 'REST APIs', 'Provider', 'Clean Architecture', 'Git & GitHub', 'Google Sheets API'
 ];

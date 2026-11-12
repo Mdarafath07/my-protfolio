@@ -18,15 +18,28 @@ export function renderFooter() {
   if (!host) return;
 
   host.innerHTML = `
+    <section class="cta-band" aria-label="Call to action">
+      <div class="container">
+        <p class="eyebrow" style="justify-content:center"><span class="idx">09</span> Next step</p>
+        <h2 style="margin-top:0.7rem">Got an idea?<br /><span class="it">Let's build it.</span></h2>
+        <p>Flutter apps, technical support, or a full product build — I'm one message away.</p>
+        <a href="mailto:${contactInfo.email}" class="btn btn-primary" data-magnetic>
+          ${contactInfo.email}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p class="brand" style="font-size:1rem">
-          <span class="brace">{</span>Arafath<span class="brace">}</span>
+        <p class="brand footer-brand" style="font-size:1rem">
+          <span class="brace">{</span><span>DEV-ARAFATH<i class="dot" style="font-style:normal">}</i></span>
         </p>
-        <p style="font-size:0.84rem;color:var(--text-3)">Flutter Developer · Dhaka, Bangladesh</p>
+        <p class="footer-tag">Flutter Developer · Dhaka, Bangladesh</p>
         <div class="footer-bottom">
           <span>© ${new Date().getFullYear()} Mohammad Arafath Uddin</span>
-          <span>Built with Flutter principles — fast, clean, cross-platform</span>
+          <span>Flutter Developer · Dhaka, Bangladesh</span>
+          <span>Built with care — fast, clean, cross-platform</span>
         </div>
         <div class="footer-socials">
           ${socials.map(s => `

@@ -1,58 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-type="software" data-radius="soft" data-buttons="solid" data-ground="sky">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohammad Arafath Uddin — Flutter Developer & Software Engineer</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Mohammad Arafath Uddin — Flutter developer and software engineer building fast, reliable mobile apps with Flutter, Firebase and clean architecture. Open to international roles." />
+  <title>Mohammad Arafath Uddin — Flutter Developer, Dhaka</title>
+
+  <meta name="description" content="Mohammad Arafath Uddin — Flutter mobile app developer from Dhaka, Bangladesh. Three production apps shipped: institute management, streaming, and retail POS." />
   <meta name="author" content="Mohammad Arafath Uddin" />
   <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#0b0b0f" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="page-type" content="software" />
+  <meta name="site-kind" content="software" />
 
-  <!-- Canonical: after first deploy replace both SITE_URL lines with your live URL -->
-  <link rel="canonical" href="https://mdarafath07.github.io/my-protfolio/" />
-  <meta property="og:url" content="https://mdarafath07.github.io/my-protfolio/" />
-  <meta property="og:image" content="https://mdarafath07.github.io/my-protfolio/assets/profile/me.jpg" />
-
-  <!-- Open Graph -->
+  <link rel="canonical" href="https://devarafath.web.app/" />
+  <meta property="og:url" content="https://devarafath.web.app/" />
+  <meta property="og:image" content="https://devarafath.web.app/assets/profile/me.jpg" />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Arafath Uddin — Portfolio" />
-  <meta property="og:title" content="Mohammad Arafath Uddin — Flutter Developer & Software Engineer" />
-  <meta property="og:description" content="Building fast, reliable mobile apps with Flutter, Firebase and clean architecture." />
+  <meta property="og:site_name" content="Mohammad Arafath Uddin — Portfolio" />
+  <meta property="og:title" content="Mohammad Arafath Uddin — Flutter Developer, built for production" />
+  <meta property="og:description" content="Flutter mobile app developer from Dhaka. Three production apps shipped — institute management, streaming, and retail POS." />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mohammad Arafath Uddin — Flutter Developer & Software Engineer" />
-  <meta name="twitter:description" content="Building fast, reliable mobile apps with Flutter, Firebase and clean architecture." />
+  <meta name="twitter:title" content="Mohammad Arafath Uddin — Flutter Developer" />
+  <meta name="twitter:description" content="Flutter mobile app developer from Dhaka. Three production apps shipped." />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-
-  <!-- Fonts -->
+  <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/profile/me.jpg" imagesrcset="assets/profile/me.jpg 400w" imagesizes="(max-width: 600px) 72vw, 380px" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- taste-skill system: one system for the page -->
+  <link rel="stylesheet" href="assets/taste/system.css" />
+  <link rel="stylesheet" href="assets/taste/ui/cards.css" />
+  <link rel="stylesheet" href="assets/taste/motion/motion.css" />
+  <link rel="stylesheet" href="assets/taste/backgrounds/backgrounds.css" />
+  <link rel="stylesheet" href="assets/taste/layout/layout.css" />
+  <link rel="stylesheet" href="assets/taste/icons/icon.css" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="detail.css" />
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+  <link rel="modulepreload" href="assets/taste/moments/moments.js">
+  <link rel="modulepreload" href="assets/taste/moments/lib.js">
+  <link rel="modulepreload" href="assets/taste/moments/giant-type-pass/moment.js">
+  <link rel="modulepreload" href="assets/taste/moments/liquid-hover/moment.js">
 </head>
 <body>
   <a class="skip-link" href="#home">Skip to content</a>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
 
   <header id="nav-placeholder"></header>
 
   <main id="main">
     <div id="hero-placeholder"></div>
     <div id="projects-placeholder"></div>
+    <div id="achievements-placeholder"></div>
     <div id="skills-placeholder"></div>
+    <div id="process-placeholder"></div>
     <div id="experience-placeholder"></div>
+    <div id="activities-placeholder"></div>
+    <div id="statement-placeholder"></div>
     <div id="about-placeholder"></div>
     <div id="contact-placeholder"></div>
   </main>
 
   <div id="footer-placeholder"></div>
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>window.__momentsManual = true;</script>
+  <script src="utils/email.local.js"></script>
   <script type="module" src="main.js"></script>
+  <script type="module" src="assets/taste/layout/layout.js"></script>
 </body>
 </html>

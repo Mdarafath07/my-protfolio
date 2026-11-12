@@ -8,7 +8,11 @@
       "**/.*",
       "**/node_modules/**",
       ".git/**",
-      ".github/**"
+      ".github/**",
+      "package.json",
+      "package-lock.json",
+      "**/*.log",
+      "**/.DS_Store"
     ],
     "rewrites": [
       {
@@ -16,5 +20,19 @@
         "destination": "/index.html"
       }
     ]
-  }
+  },
+  "headers": [
+    {
+      "source": "**/*.@(jpg|jpeg|png|gif|webp|svg|ico)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }]
+    },
+    {
+      "source": "**/*.@(css|js|mjs)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    },
+    {
+      "source": "/index.html",
+      "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+    }
+  ]
 }

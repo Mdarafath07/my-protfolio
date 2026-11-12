@@ -1,38 +1,38 @@
 export const experiences = [
   {
-    role: 'Freelance Flutter Developer',
-    company: 'Remote · Client Work',
-    period: '2024 — Present',
-    summary: 'Building production apps for local businesses and remote clients, end to end.',
+    role: 'Freelance Developer',
+    company: 'Self-Employed | Remote',
+    period: 'Oct 2024 – Present',
+    summary: 'Provided freelance development and technical support services to local clients across a variety of projects and business requirements.',
     bullets: [
-      'Ship production-ready Android & iOS apps built on Flutter, Firebase and REST APIs',
-      'Turn raw client requirements into documented, testable product features',
-      'Maintain quality through structured testing, error tracking and clean code reviews'
+      'Developed mobile applications, resolved software-related issues, managed online platforms, and delivered customized technical solutions tailored to client needs',
+      'Worked remotely with clients to identify technical challenges, improve existing systems, troubleshoot software problems, and implement practical solutions',
+      'Contributed to multiple short-term and long-term projects involving application development, digital management, technical consultation, and operational support'
     ],
-    tags: ['Flutter', 'Firebase', 'REST APIs', 'Provider']
+    tags: ['Flutter', 'Firebase', 'Technical Support', 'Client Consultation']
   },
   {
     role: 'President & App Development Mentor',
     company: 'Compact Polytechnic ICT Club',
-    period: '2024 — 2026',
-    summary: 'Led a student tech club and taught others to build.',
+    period: 'Jan 2025 – Dec 2025',
+    summary: 'Led club activities, technology-focused initiatives, and student engagement programs while fostering a collaborative learning environment.',
     bullets: [
-      'Organized workshops and hack sessions teaching Flutter, Firebase and API integration',
-      'Mentored students through real mini-projects with structured code reviews',
-      'Managed club operations, event planning and team coordination'
+      'Organized technical sessions, project activities, and knowledge-sharing programs that encouraged practical learning and innovation',
+      'Provided mentorship in Flutter development, Firebase integration, REST API implementation, and modern mobile application development practices',
+      'Guided students in building real-world projects, improving programming skills, and understanding professional development workflows'
     ],
-    tags: ['Mentoring', 'Leadership', 'Code Review', 'Flutter']
+    tags: ['Mentoring', 'Leadership', 'Flutter', 'Firebase']
   },
   {
-    role: 'Industrial Attachment',
+    role: 'Flutter Application Development Intern',
     company: 'European IT Solutions Institute',
-    period: '2025',
-    summary: 'Professional training on industry-grade Flutter workflows.',
+    period: 'Jan 2025 – Dec 2025',
+    summary: 'Successfully completed industrial training focused on Flutter application development and modern software development practices.',
     bullets: [
-      'Built API-integrated features under industry supervision',
-      'Adopted clean architecture and production development workflows',
-      'Focused on UI optimization and layout performance'
+      'Gained practical experience in application architecture, API integration, responsive user interface development, debugging, and performance optimization',
+      'Demonstrated strong technical competency, adaptability, and commitment to professional growth throughout the training program',
+      'Received Best Performance Crest in recognition of strong technical performance'
     ],
-    tags: ['Clean Architecture', 'REST APIs', 'UI Optimization']
+    tags: ['Flutter', 'Clean Architecture', 'API Integration', 'UI Optimization']
   }
 ];

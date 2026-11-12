@@ -25,34 +25,43 @@ export function renderAbout() {
       <div class="container">
         <div class="about-grid">
           <div class="about-copy reveal">
-            <span class="eyebrow">About</span>
-            <h2>I turn product ideas into apps people actually use.</h2>
+            <span class="eyebrow"><span class="idx">07</span> About</span>
+            <h2>I turn product ideas into apps people <span class="it">actually use.</span></h2>
             <p>
-              I'm <strong>Arafath</strong>, a Flutter developer and software engineering student from Dhaka.
-              I've spent the last few years building production apps — from an institute management ecosystem
-              to a retail POS system — owning everything from UI and state management to Firebase backends and releases.
+              I'm <strong>Mohammad Arafath Uddin</strong> — Arafath to friends — a Flutter developer from Dhaka, Bangladesh.
+              I've spent the last few years building production-grade mobile applications — ranging from an
+              institute management ecosystem to inventory and POS solutions. I own everything from UI/UX design
+              and state management to Firebase backend integration and app store releases.
             </p>
             <p>
-              My work is guided by three things: <strong>clean, maintainable code</strong>, apps that feel fast
-              on any device, and honest communication with the people I build for. I also mentor other developers
-              — teaching has made me far better at explaining and defending technical decisions.
+              My engineering philosophy is rooted in <strong>clean, maintainable code</strong> and intuitive design.
+              Whether I'm managing club operations as President of the Compact Polytechnic ICT Club,
+              leading student mentorship programs, or solving complex retail inventory challenges, I focus on
+              delivering practical solutions that create real-world value.
             </p>
             <p style="margin-bottom:0">
-              I'm currently open to <strong>full-time, remote and freelance Flutter roles</strong> internationally.
+              I am currently pursuing a <strong>B.Sc. in Computer Science and Engineering</strong> at Eastern University,
+              and am open to <strong>challenging Flutter development and technical support roles</strong> internationally.
             </p>
           </div>
 
-          <aside class="focus-card reveal">
+          <aside class="about-side reveal">
+            <figure class="about-photo" data-moment="liquid-hover" data-moment-opts='{"strength": 0.75}'>
+              <img src="assets/profile/me.jpg" alt="Mohammad Arafath Uddin, Flutter developer, in Dhaka" width="400" height="460" />
+            </figure>
+
+            <div class="focus-card">
             ${focus.map(f => `
               <div class="fc-item">
                 <span class="fc-ico" aria-hidden="true">${f.i}</span>
                 <div class="fc-body"><b>${f.t}</b><p>${f.d}</p></div>
               </div>`).join('')}
-            <div style="margin-top:1.25rem">
-              <button class="btn btn-primary" data-scroll="#contact" style="width:100%">
+            <div style="margin-top:1.4rem">
+              <button class="btn btn-primary btn-block" data-scroll="#contact" data-magnetic>
                 Let's work together
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </button>
+            </div>
             </div>
           </aside>
         </div>
